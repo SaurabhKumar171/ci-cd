@@ -26,6 +26,10 @@ jobs:
         run: npm test
 
       - name: Deploy on Render
-        if: success()
-        run: curl -X POST "$RENDER_DEPLOY_HOOK"
+        # if: success()
+        # run: curl -X POST "$RENDER_DEPLOY_HOOK"
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          curl -X POST $RENDER_DEPLOY_HOOK
 
