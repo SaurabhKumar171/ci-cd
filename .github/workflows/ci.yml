@@ -24,3 +24,11 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Run linting
+        run: npm run lint
+        
+      - name: Deploy on Render
+        if: success()
+        run: curl -X POST "$RENDER_DEPLOY_HOOK"
+
